@@ -1,7 +1,7 @@
 % vim:ft=plaintex:
 %
-%  Written and (C) by Jérôme Lelong <jerome.lelong@gmail.com>
-%  September 2007
+%  Written and (C) by JÃ©rÃ´me Lelong <jerome.lelong@gmail.com>
+%  2007 - 2016
 % 
 %  This program is free software; you can redistribute it and/or modify it
 %  under the terms of the GNU General Public License as published by the
@@ -19,7 +19,8 @@
 %  This small piece of code fixes the frame numbering in beamer when using
 %  an appendix such  that the slides of the appendix are not counted in the
 %  total framenumber of the main part of the document. The total
-%  framenumber counter is reset to 0 when entering the appendix.
+%  framenumber counter is reset to 0 and starts counting again when
+%  entering the appendix.
 % 
 %  Usage: \usepackage{appendixnumberbeamer}
 %  and declare the appendix as usual using the \appendix command.
@@ -33,20 +34,20 @@
 \let\appendixorig\appendix
 
 % Redefine the \appendix command:
-%   - it resets the framenumber counter 
-%   - freezes the total framenumber for this first part of the document
+%   - Reset the framenumber counter 
+%   - Freeze the total framenumber for this first part of the document
 \def\appendix{
-  \edef\mainend{\theframenumber}
+  \xdef\mainend{\theframenumber}
   \immediate\write\@auxout{\string\global\string\@namedef{mainendframenumber}{\mainend}}
   \appendixorig
-  \def\inserttotalframenumber{\appendixtotalframenumber}%
+  \gdef\inserttotalframenumber{\appendixtotalframenumber}%
   \setcounter{framenumber}{0}
 }
 
-% To be called at the end of document to fix the total framenumber in the
+% To be called at the end of the document to fix the total framenumber in the
 % main document and in the appendix.
 \def\pageatend{
-  \edef\appendixend{\theframenumber}
+  \xdef\appendixend{\theframenumber}
   \ifnum\mainend>0%
   \immediate\write\@auxout{\string\global\string\@namedef{appendixtotalframenumber}{\appendixend}}%
   \immediate\write\@auxout{\string\global\string\@namedef{inserttotalframenumber}{\mainend}}%
