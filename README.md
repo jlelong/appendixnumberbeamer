@@ -31,14 +31,14 @@ and MiKTeX distributions.
 
 I wanted a beamer theme with very few decorations and a simple look and
 feel. The running header only shows the tittle of the presentation and
-no more.
+not more.
 
 # solexo.sty
 
-Since the very first time I wrote some exercises along with their solutions
-in LaTeX, I have felt like having a package with options to decide how to
-display solutions. Either, all the solutions are printed at the end of the
-document or each solution immediately follows the related question text.
+When writing exercises or exam texts, it is convenient to write the
+solution along with every question. This package is designed to place the
+solutions either after each question or at the end of the document. You can
+even decide to hide all the solutions.
 
 
 # amsaddr
