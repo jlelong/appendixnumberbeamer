@@ -1,8 +1,11 @@
 % vim:ft=plaintex:
 %
 %  Written and (C) by Jérôme Lelong <jerome.lelong@gmail.com>
-%  2007 - 2016
-% 
+%  2007 - 2018
+%
+%  Patch from Sebastian Friedl <sfr682k@t-online.de> to fix issue #1
+%  for Beamer >= 3.48.
+%
 %  This program is free software; you can redistribute it and/or modify it
 %  under the terms of the GNU General Public License as published by the
 %  Free Software Foundation; either version 3 of the License, or (at your
@@ -29,6 +32,7 @@
 \makeatletter
 
 
+% \def\appendixtotalframenumber{0}
 \let\appendixtotalframenumber\empty
 \def\mainend{-1}
 \let\appendixorig\appendix
@@ -40,7 +44,7 @@
   \xdef\mainend{\theframenumber}
   \immediate\write\@auxout{\string\global\string\@namedef{mainendframenumber}{\mainend}}
   \appendixorig
-  \gdef\inserttotalframenumber{\appendixtotalframenumber}%
+  \headcommand{\gdef\inserttotalframenumber{\appendixtotalframenumber}}%
   \setcounter{framenumber}{0}
 }
 
@@ -52,7 +56,7 @@
   \immediate\write\@auxout{\string\global\string\@namedef{appendixtotalframenumber}{\appendixend}}%
   \immediate\write\@auxout{\string\global\string\@namedef{inserttotalframenumber}{\mainend}}%
   \immediate\write\@auxout{\string\@writefile{nav}{\noexpand \headcommand {%
-        \noexpand \def\noexpand \inserttotalframenumber{\mainend}}}}%
+        \noexpand \gdef\noexpand \inserttotalframenumber{\mainend}}}}%
   \immediate\write\@auxout{\string\@writefile{nav}{\noexpand \headcommand {%
         \noexpand \def\noexpand \appendixtotalframenumber{\appendixend}}}}%
   \else
