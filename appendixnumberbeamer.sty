@@ -32,8 +32,7 @@
 \makeatletter
 
 
-% \def\appendixtotalframenumber{0}
-\let\appendixtotalframenumber\empty
+\gdef\appendixtotalframenumber{0}
 \def\mainend{-1}
 \let\appendixorig\appendix
 
@@ -55,10 +54,10 @@
   \ifnum\mainend>0%
   \immediate\write\@auxout{\string\global\string\@namedef{appendixtotalframenumber}{\appendixend}}%
   \immediate\write\@auxout{\string\global\string\@namedef{inserttotalframenumber}{\mainend}}%
-  \immediate\write\@auxout{\string\@writefile{nav}{\noexpand \headcommand {%
-        \noexpand \gdef\noexpand \inserttotalframenumber{\mainend}}}}%
-  \immediate\write\@auxout{\string\@writefile{nav}{\noexpand \headcommand {%
-        \noexpand \def\noexpand \appendixtotalframenumber{\appendixend}}}}%
+  \immediate\write\@auxout{\string\@writefile{nav}{\noexpand \headcommand{%
+        \noexpand\gdef\noexpand\inserttotalframenumber{\mainend}}}}%
+  \immediate\write\@auxout{\string\@writefile{nav}{\noexpand \headcommand{%
+        \noexpand\gdef\noexpand\appendixtotalframenumber{\appendixend}}}}%
   \else
   \fi
 }
