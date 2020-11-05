@@ -29,8 +29,8 @@
 %  and declare the appendix as usual using the \appendix command.
 
 
-\makeatletter
-
+\mode
+<presentation>
 
 \gdef\appendixtotalframenumber{0}
 \def\mainend{-1}
@@ -64,4 +64,6 @@
 
 
 \AtEndDocument{\pageatend}
-\makeatother
+
+\mode
+<all>
