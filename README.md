@@ -12,3 +12,5 @@ using the `\appendix` command.
 This package is also available from
 http://www.ctan.org/pkg/appendixnumberbeamer and is included in the
 TeXLive and MiKTeX distributions
+
+Jérôme Lelong <jerome.lelong@gmail.com>
